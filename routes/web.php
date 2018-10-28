@@ -682,5 +682,69 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function() {
 
 
 
+ //------------------------------------------tournaments Reference--------------------------------------------------------------------
+
+    Route::get('/tournament/edition/create', [
+        'uses' => 'TournamentReferenceController@create',
+        'as' => 'edition.create'
+
+    ]);
+
+
+
+    Route::get('/tournaments/edition', [
+        'uses' => 'TournamentReferenceController@index',
+        'as' => 'edition.index'
+
+    ]);
+
+
+
+
+    Route::post('/tournament/edition/store', [
+        'uses' => 'TournamentReferenceController@store',
+        'as' => 'edition.store'
+
+    ]);
+
+
+
+    Route::get('/tournament/edition/edit/{id}', [
+        'uses' => 'TournamentReferenceController@edit',
+        'as' => 'edition.edit'
+
+    ]);
+
+
+    Route::get('/tournament/edition/show/{id}', [
+        'uses' => 'TournamentReferenceController@show',
+        'as' => 'edition.show'
+
+    ]);
+
+    Route::POST('/clubBy/club',[
+        'uses'=> 'TournamentReferenceController@clubByClub',
+        'as' => 'clubByClub'
+    ]);
+
+
+    Route::patch('/tournament/edition/update/{id}', [
+        'uses' => 'TournamentReferenceController@update',
+        'as' => 'edition.update'
+
+    ]);
+
+
+    Route::get('/tournament/edition/delete/{id}', [
+        'uses' => 'TournamentReferenceController@destroy',
+        'as' => 'edition.delete'
+
+    ]);
+
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
 
 });
