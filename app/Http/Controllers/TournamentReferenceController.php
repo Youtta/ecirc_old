@@ -22,6 +22,7 @@ class TournamentReferenceController extends Controller
     public function index()
     {
         $tournaments = TournamentsReference::all();
+
         return view('admin.tournaments.editions.index',compact('tournaments'));
     }
 
@@ -35,6 +36,8 @@ class TournamentReferenceController extends Controller
         $tournaments = Tournament::pluck('name','id');
         $m_type = MatchType::pluck('type_name','id');
         $t_format = TournamentFormat::pluck('format_name','id');
+
+
         return view('admin.tournaments.editions.create',compact('tournaments','m_type','t_format'));
     }
 
@@ -53,6 +56,10 @@ class TournamentReferenceController extends Controller
             $photo = Photo::create(['file'=>$name]);
             $input['photo_id'] = $photo->id;
         }
+
+
+
+
         $input['tournament_id'] = $request->tournament_id;
         $input['tournament_format_id'] = $request->tournament_format_id;
         $input['tournament_type_id'] = $request->tournament_type_id;
@@ -76,10 +83,16 @@ class TournamentReferenceController extends Controller
      */
     public function show($id)
     {
-        $clubs = Club::all();
+        /*$clubs = Club::all();*/
         $editions = TournamentsReference::findOrFail($id);
         // return $editions;
-        return view('admin.tournaments.editions.show',compact('editions','clubs'));
+        $clubs = Club::pluck('name','id','')->all();
+
+
+        $data = TournamentsReference::findOrFail($id);
+
+
+        return view('admin.tournaments.editions.show',compact('editions','clubs','data'));
     }
 
     public function clubByClub(Request $request)

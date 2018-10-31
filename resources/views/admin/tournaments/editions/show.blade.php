@@ -8,7 +8,7 @@
 
 
 
-    <h2>Create Tournamaent Edition</h2>
+    <h2>Create Tournament Edition</h2>
 
 
     <div class="row">
@@ -20,7 +20,8 @@
 
                 {!! Form::open(['method'=>'POST', 'action'=> 'TournamentReferenceController@store','files'=>true]) !!}
 
-                
+{{--
+
                 @for($i=0; $i< sizeof($clubs); $i++)
                 
                 <div class="form-group">
@@ -31,7 +32,29 @@
                 </div>
 
                 @endfor
+--}}
+                <div class="container">
 
+
+
+                    <div class="form-group">
+
+
+                        <input type="hidden" value="{{$data->number_of_teams}}">
+                         <label for="clubs">Select Clubs</label>
+                         <select id="club_id"  class="form-control">
+                             @foreach($clubs as $key => $club)
+                                 <option value="{{ $key }}" >{{ $club }}</option>
+                             @endforeach
+                         </select>
+
+                            {{--{!! Form::label('club_id', 'Club') !!}
+                            {!! Form::select('club_id', [''=>'Choose Club'] + $clubs, null,['multiple'=>'true], ['class'=>'form-control'])!!}
+--}}
+
+                    </div>
+
+                </div>
 
 
 
@@ -45,6 +68,20 @@
             </div>
         </div>
     </div>
+
+
+
+
+    <script type="text/javascript">
+
+        $("#club_id").select2({
+            placeholder: "Select Clubs",
+            multiple: true,
+            allowClear: true,
+            maximumSelectionLength : 1
+
+        });
+    </script>
 
 
     @include('includes.form_error')

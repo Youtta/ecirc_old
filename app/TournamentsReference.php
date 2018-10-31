@@ -17,4 +17,12 @@ class TournamentsReference extends Model
     {
     	return $this->belongsTo('App\Photo');
     }
+
+
+
+    public function club()
+    {
+        return $this->belongsTo('App\Club');
+    }
+
 }
